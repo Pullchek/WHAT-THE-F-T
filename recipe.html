@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHAT THE F!T - Healthy Recipes</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=CvKsgPtj4shu&format=png&color=000000" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #7c3aed;
+            --secondary-color: #22d3ee;
+            --bg-gradient-start: #7c3aed;
+            --bg-gradient-end: #22d3ee;
+            --bg-light: #f5f3ff;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .recipe-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .recipe-header h1 {
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .macros-tracker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+        }
+
+        .macro-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .macro-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .macro-value {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container {
+            overflow: hidden;
+        }
+
+        .image-container:hover .recipe-image {
+            transform: scale(1.05);
+        }
+
+        .recipe-content {
+            padding: 2rem;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            width: 100%;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(124,58,237,0.2);
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(124,58,237,0.3);
+        }
+
+        .calorie-calculator {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #ingredient-list li, #preparation li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        #ingredient-list li:hover {
+            background-color: var(--bg-light);
+        }
+
+        .cta-section {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        @media screen and (max-width: 600px) {
+            .macros-tracker {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="recipe-card">
+            <div class="recipe-header">
+                <h1>Healthy Recipes</h1>
+            </div>
+
+            <div class="macros-tracker">
+                <div class="macro-item">
+                    <span>Protein</span>
+                    <div class="macro-value" id="protein-value">30g</div>
+                </div>
+                <div class="macro-item">
+                    <span>Calories</span>
+                    <div class="macro-value" id="calories-value">350</div>
+                </div>
+                <div class="macro-item">
+                    <span>Carbs</span>
+                    <div class="macro-value" id="carbs-value">20g</div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img class="recipe-image" src="images/indir (10).jpeg" alt="Grilled Chicken Salad">
+            </div>
+
+            <div class="recipe-content">
+                <h2>Grilled Chicken Salad</h2>
+                
+                <button class="interactive-btn" onclick="toggleVisibility('ingredients')">
+                    <i class="fas fa-list-ul me-2"></i>Show Ingredients
+                </button>
+                <div id="ingredients" class="hidden">
+                    <ul id="ingredient-list">
+                        <li>200g of Chicken Breast</li>
+                        <li>Soy Sauce</li>
+                        <li>100g of Tomatoes</li>
+                        <li>150g of Lettuce</li>
+                        <li>20g of Mayonnaise</li>
+                        <li>40g of Corn</li>
+                    </ul>
+                </div>
+
+                <div class="calorie-calculator">
+                    <h3>Customize Your Portion</h3>
+                    <label for="portion-slider">Adjust Portion Size:</label>
+                    <input type="range" id="portion-slider" min="50" max="200" value="100">
+                    <div id="adjusted-calories">Current Calories: 350</div>
+                </div>
+
+                <button class="interactive-btn" onclick="toggleVisibility('preparation')">
+                    <i class="fas fa-utensils me-2"></i>Show Preparation Steps
+                </button>
+                <div id="preparation" class="hidden">
+                    <ol>
+                        <li>Grill the chicken breast until cooked through.</li>
+                        <li>Chop the vegetables.</li>
+                        <li>Mix all ingredients in a bowl and enjoy.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="dashboard.html" class="interactive-btn">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleVisibility(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+        }
+
+        const portionSlider = document.getElementById('portion-slider');
+        const adjustedCalories = document.getElementById('adjusted-calories');
+        const baseCalories = 350;
+
+        portionSlider.addEventListener('input', function() {
+            const scaleFactor = this.value / 100;
+            const newCalories = Math.round(baseCalories * scaleFactor);
+            adjustedCalories.textContent = `Current Calories: ${newCalories}`;
+
+            document.getElementById('protein-value').textContent = 
+                `${Math.round(30 * scaleFactor)}g`;
+            document.getElementById('carbs-value').textContent = 
+                `${Math.round(20 * scaleFactor)}g`;
+        });
+    </script>
+</body>
+</html>

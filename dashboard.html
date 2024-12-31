@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHAT THE F!T - Dashboard</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=CvKsgPtj4shu&format=png&color=000000" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7c3aed;
+            --secondary-color: #22d3ee;
+            --bg-gradient-start: #7c3aed;
+            --bg-gradient-end: #22d3ee;
+            --bg-light: #f5f3ff;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .dashboard-wrapper {
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .dashboard-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        .workout-card {
+            display: flex;
+            align-items: center;
+            background-color: #f5f3ff;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .workout-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(124,58,237,0.1);
+        }
+
+        .workout-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            margin-right: 1.5rem;
+            object-fit: cover;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: scale(1.05);
+        }
+
+        .metric-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section {
+            background-color: #f5f3ff;
+            padding: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .cta-programs {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(124,58,237,0.2);
+        }
+
+        .cta-programs:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(124,58,237,0.3);
+        }
+
+        .cta-programs i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h1>WHAT THE F!T Dashboard</h1>
+                </div>
+
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h2 class="section-title">Today's Workout Plan</h2>
+                                <div class="workout-card">
+                                    <img src="images/indir (1).jpeg" alt="Workout">
+                                    <div>
+                                        <h4>Full Body Strength Training</h4>
+                                        <p class="text-muted">45 mins | Moderate Intensity</p>
+                                    </div>
+                                </div>
+                                <div class="workout-card">
+                                    <img src="images/indir (8).jpeg" alt="Workout">
+                                    <div>
+                                        <h4>HIIT Cardio Session</h4>
+                                        <p class="text-muted">30 mins | High Intensity</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 class="section-title">Progress Tracking</h2>
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div>
+                                <h2 class="section-title">Fitness Stats</h2>
+                                <div class="metric-grid">
+                                    <div class="metric-card">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <h4>Workouts</h4>
+                                        <p>12/30</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <i class="fas fa-weight"></i>
+                                        <h4>Weight</h4>
+                                        <p>165 lbs</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <i class="fas fa-fire"></i>
+                                        <h4>Calories</h4>
+                                        <p>2350/2500</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <i class="fas fa-running"></i>
+                                        <h4>Active Time</h4>
+                                        <p>3h 45m</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section text-center">
+                    <a href="workout-programs.html?program=powerlifting" class="cta-programs">
+                        <i class="fas fa-dumbbell"></i>Powerlifting
+                    </a>
+                    <a href="workout-programs.html?program=calisthenics" class="cta-programs">
+                        <i class="fas fa-person"></i>Calisthenics
+                    </a>
+                    <a href="workout-programs.html?program=flexibility" class="cta-programs">
+                        <i class="fas fa-yoga"></i>Flexibility
+                    </a>
+                    <a href="exercise-videos.html" class="cta-programs">
+                        <i class="fas fa-video"></i>Videos
+                    </a>
+                    <a href="recipe.html" class="cta-programs">
+                        <i class="fas fa-utensils"></i>Recipes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress Chart
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Workout Progress',
+                    data: [65, 59, 80, 81],
+                    borderColor: '#7c3aed',
+                    backgroundColor: 'rgba(124,58,237,0.2)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Workout Progress',
+                        font: {
+                            family: 'Poppins',
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

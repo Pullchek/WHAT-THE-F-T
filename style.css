@@ -1,0 +1,51 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  header {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(to bottom right, #ff9966, #ff5e62);
+    color: white;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .cta-button {
+    background-color: #ff5e62;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    display: inline-block;
+  }
+  
+  .cta-button:hover {
+    background-color: #ff9966;
+    transform: scale(1.05);
+  }
+  
+  /* Style images */
+  img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block;
+  }
+  

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Programs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .program-card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .program-card:hover {
+      transform: scale(1.05);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Workout Programs</h1>
+  <div id="program-container"><a href="workout-programs.html?program=powerlifting" class="cta-programs">Powerlifting Program</a>
+    <a href="workout-programs.html?program=calisthenics" class="cta-programs">Calisthenics Program</a>
+    <a href="workout-programs.html?program=flexibility" class="cta-programs">Flexibility Program</a>
+    <a href="exercise-videos.html" class="cta-programs">Exercise Videos</a></div>
+
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const program = urlParams.get('program');
+    const programContainer = document.getElementById('program-container');
+
+    // Program details
+    const programs = {
+      powerlifting: {
+        title: "Powerlifting Program",
+        description: "A structured 5-day program focusing on strength and heavy compound lifts like Squat, Deadlift, and Bench Press."
+      },
+      calisthenics: {
+        title: "Calisthenics Program",
+        description: "Bodyweight exercises to build functional strength and flexibility using minimal equipment."
+      },
+      flexibility: {
+        title: "Flexibility and Mobility Program",
+        description: "Improve your flexibility and range of motion with daily routines to enhance performance and prevent injuries."
+      }
+    };
+
+    // Display the selected program
+    if (program && programs[program]) {
+      const { title, description } = programs[program];
+      programContainer.innerHTML = `
+        <div class="program-card fade-in">
+          <h2>${title}</h2>
+          <p>${description}</p>
+        </div>
+      `;
+    } else {
+      programContainer.innerHTML = `
+        <div class="program-card fade-in">
+          <h2>Program Not Found</h2>
+          <p>Please select a valid workout program.</p>
+        </div>
+      `;
+    }
+
+    // Fade-in effect for the program card
+    const programCard = document.querySelector('.program-card');
+    if (programCard) {
+      programCard.classList.add('visible');
+    }
+  </script>
+
+</body>
+</html>

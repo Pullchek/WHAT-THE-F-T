@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - WHAT THE F!T</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7c3aed;
+            --secondary-color: #22d3ee;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f5f3ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .signup-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .signup-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .signup-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-header p {
+            opacity: 0.9;
+        }
+
+        .signup-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .social-signup {
+            padding: 2rem;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .social-signup p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-button.google {
+            background: #fff;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-button.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 640px) {
+            .signup-container {
+                margin: 1rem;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>Create Account</h1>
+            <p>Join WHAT THE F!T and start your fitness journey</p>
+        </div>
+
+        <form id="signup-form" class="signup-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bodyType">Body Type</label>
+                <i class="fas fa-user-circle"></i>
+                <select id="bodyType" required>
+                    <option value="" disabled selected>Select your body type</option>
+                    <option value="ectomorph">Ectomorph</option>
+                    <option value="mesomorph">Mesomorph</option>
+                    <option value="endomorph">Endomorph</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="program">Training Program</label>
+                <i class="fas fa-dumbbell"></i>
+                <select id="program" required>
+                    <option value="" disabled selected>Choose your program</option>
+                    <option value="powerlifting">Powerlifting</option>
+                    <option value="calisthenics">Calisthenics</option>
+                    <option value="flexibility">Flexibility</option>
+                </select>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <div class="social-signup">
+            <p>Or sign up with</p>
+            <div class="social-buttons">
+                <button class="social-button google">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+                <button class="social-button facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                phone: document.getElementById('phone').value,
+                bodyType: document.getElementById('bodyType').value,
+                program: document.getElementById('program').value
+            };
+            sessionStorage.setItem('user', JSON.stringify(userData));
+            
+            // Show success message with animation
+            const button = this.querySelector('button[type="submit"]');
+            button.innerHTML = '<i class="fas fa-check"></i> Success!';
+            button.style.background = '#10B981';
+            
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+        });
+
+        // Add floating label effect
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
